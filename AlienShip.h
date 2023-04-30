@@ -35,9 +35,6 @@ public:
     }
 
     void setAlienShip(int type, int x, int y) {
-        if(type == 3) {
-            this->setTopBody("BOOOB");
-        }
         this->setTopBody(ALIEN_BUILDER[type][0]);
         this->setMiddleBody(ALIEN_BUILDER[type][1]);
         this->setBottomBody(ALIEN_BUILDER[type][2]);
@@ -69,7 +66,7 @@ public:
         // Now checking for the collision with the player ship
         if( (((this->getY() + 1) == (pOne.getY() - 1)) && 
                 (((this->getX() + 5) == pOne.getX()) || (this->getX() == (pOne.getX() + 5)))) || 
-            ((this->getY() > (pOne.getY() - 1)) && 
+            ((this->getY() >= (pOne.getY() - 1)) && 
                 (((this->getX() + 6) == pOne.getX()) || (this->getX() == (pOne.getX() + 5))))) {
             pOne.instantDeath();
             return true;

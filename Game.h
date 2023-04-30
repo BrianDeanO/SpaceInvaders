@@ -17,15 +17,15 @@ using namespace std;
 const unsigned long int NAME_LENGTH = 3;
 const int DELAY = 15000;
 const int BOMB_TIME = 50;
-const int BULLET_TIME = 30;
-const int PROJECTILE_MOVE_TIME_INDICATOR = 5;
-const int ALIEN_MOVE_TIME_INDICATOR = 8;
-const int SPECIAL_UFO_TIME_INDICATOR = 2000 + (rand() % 1000);
+const int BULLET_TIME = 40;
+const int PROJECTILE_MOVE_TIME_INDICATOR = 10;
+const int ALIEN_MOVE_TIME_INDICATOR = 14;
+const int SPECIAL_UFO_TIME_INDICATOR = 500 + (rand() % 300);
 bool INVERTED = false;
 
 class Game {
 private:
-    int highScore = 5000; 
+    int highScore = 100; 
     string userName = "TRD";
     int playerInput;
     PlayerShip playerOne;
@@ -153,10 +153,11 @@ public:
             
             else {
                 // Game Over Screen when user gets High Score
-                if(playerOne.getScore() >= getHighScore()) {
+                if((playerOne.getScore() >= getHighScore()) || gotHighScore) {
                     gotHighScore = 1;
                     switch (playerInput) {
                         case 'q':
+                            setHighScore(playerOne.getScore());
                             break;
 
                         case ' ':
@@ -209,27 +210,32 @@ public:
             }
         }
 
-
         clear();
         refresh();
         endwin();
 
         cout << "Game Over!!!\n";
-        cout << "Score Acheived - " << playerOne.getScore() << endl;
 
         if(gotHighScore) {
+            cout << "High Score Score Acheived - " << getHighScore() << endl;
             cout << "Enter Your 3-Digit Initial - ";
-            cin >> tempName;
+            getline(cin, tempName);
 
             if(tempName.length() == 0) {
-                tempName = "TRD";
+                tempName = "???";
+                setUserName(tempName);
+                cout << "Staying Anonymous, huh? That's fine...\n";
+            } 
+            
+            else {
+                string threeDigitName = tempName.substr(0, 3);
+                setUserName(threeDigitName);   
+                cout << getUserName() << ", You're The Best Pilot In The Galaxy!!!\n";          
             }
-
-            string threeDigitName = tempName.substr(0, 3);
-            setUserName(threeDigitName);
-            setHighScore(playerOne.getScore());
-
-            cout << getUserName() << ", You're The Best Pilot In The Galaxy!!!\n";
+        } 
+        
+        else {
+            cout << "Score Acheived - " << playerOne.getScore() << endl;
         }
 
         saveToFile(getUserName(), getHighScore());
@@ -246,7 +252,7 @@ public:
         interface.setPauseStatus(false);
         interface.setNewLevelStatus(false);
         interface.setAlienCount(ALIEN_ROWS * ALIEN_COLUMNS);
-        playerOne.setLives(3);
+        playerOne.setLives(1);
         bullets.clear();
         bombs.clear();
 

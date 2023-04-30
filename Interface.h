@@ -169,7 +169,7 @@ public:
         string pointValues[] = {"= 10 pts", "= 15 pts", "= 20 pts", "= ?? pts"};
         string controls[] = {"CONTROLS", "SHOOT - SPACEBAR", "MOVE - LEFT/RIGHT ARROW KEYS"};
 
-        mvaddstr(4, getMiddleX(), (spaceInvadersTitle).c_str());
+        mvaddstr(((getYMax() / 2) - 10), getMiddleX(), (spaceInvadersTitle).c_str());
     
         typeOne.printAlienShipMainMenuStats(((getYMax() / 2) - 6), (getMiddleX() + 30));
         mvaddstr(((getYMax() / 2) - 6), (getMiddleX() + 40), (pointValues[0]).c_str());
@@ -198,14 +198,14 @@ public:
     }
 
     void drawHighScoreGameOver() {
-        string gameOverMessage = "GAME OVER!!!";
-        string congratsMessageOne = "CONGRATS YOU GOT THE HIGH SCORE!!!!";
+        string gameOverMessage = "GAME OVER!";
+        string congratsMessageOne = "CONGRATS YOU GOT THE HIGH SCORE!!!";
         string congratsMessageTwo = "YOU CAN QUIT NOW OR LATER TO ENTER INITIALS AND CEMENT YOUR LEGACY!!";
         string playAgainMessage = "PRESS SPACEBAR TO PLAY AGAIN";
 
         mvaddstr((getYMax() / 2), (getMiddleX()  + 1), (gameOverMessage).c_str());
         mvaddstr((getYMax() / 2 + 1), (getMiddleX() - 10), (congratsMessageOne).c_str());
-        mvaddstr((getYMax() / 2 + 2), (getMiddleX() - 23), (congratsMessageTwo).c_str());
+        mvaddstr((getYMax() / 2 + 2), (getMiddleX() - 24), (congratsMessageTwo).c_str());
         mvaddstr(((getYMax() / 2) + 3), (getMiddleX() - 7), (playAgainMessage).c_str());
     }
 
