@@ -10,3 +10,4 @@ Re-creating the classic Space Invaders game for a class project in CPT_S 322 - S
 
 ### NOTE
 Screen adjustment might be required to fit alien ships on the screen. 
+And to download the ncurses library, use the command: sudo apt install libncurses5-dev libncursesw5-dev 
