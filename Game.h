@@ -252,7 +252,7 @@ public:
         interface.setPauseStatus(false);
         interface.setNewLevelStatus(false);
         interface.setAlienCount(ALIEN_ROWS * ALIEN_COLUMNS);
-        playerOne.setLives(1);
+        playerOne.setLives(3);
         bullets.clear();
         bombs.clear();
 
